@@ -2,7 +2,7 @@
 const Connect = (server) => {
     let mysql = require('mysql');
     console.log(mysql);
-    let connection = mysql.createPool({
+    let connection = mysql.createConnection({
         host: server.serverName,
         user: server.username,
         password: server.password,
