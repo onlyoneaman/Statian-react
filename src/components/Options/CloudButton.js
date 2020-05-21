@@ -29,7 +29,11 @@ class CloudButton extends React.Component{
         else {
             let menuItems = [];
             this.props.servers.map(c => {
-                menuItems.push(<option key={c.id}>{c.name}</option>)
+                menuItems.push(
+                    <option key={c.id} selected={c.id===this.props.serverId}>
+                        {c.name}
+                    </option>
+                )
             })
             let menu = (
                 <select onChange={e => this.updateServerId(e.target.value)}>

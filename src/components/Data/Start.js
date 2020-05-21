@@ -1,4 +1,5 @@
 import React from 'react';
+import Connect from "../../Api/Connect";
 
 class Start extends React.Component{
     state={
@@ -6,12 +7,21 @@ class Start extends React.Component{
     }
 
     execute = () => {
+        let server = null;
+        let servers = this.props.servers;
         this.setState({processing: true})
-
+        for(let i=0;i < servers.length; i++) {
+            if(servers[i].id === this.props.serverId) {
+                server = servers[i];
+            }
+        }
+        console.log(server);
+        let response = Connect(server);
     }
 
     cancel = () => {
         this.setState({processing: false})
+
     }
 
     render() {

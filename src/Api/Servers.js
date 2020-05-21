@@ -6,7 +6,7 @@ const getServers = async () => {
 function dataBases() {
     return {
         servers: {
-            defaultSelectedId: 1,
+            defaultSelectedId: 4,
             data: [
                 {
                     id: 1,
@@ -26,7 +26,8 @@ function dataBases() {
                     dbname: 'amank1647db',
                     username: 'amank1647',
                     port: 3306,
-                    serverName: 'db4free.net'
+                    serverName: 'db4free.net',
+                    password: 'amankumar1647'
                 }
             ]
         }
