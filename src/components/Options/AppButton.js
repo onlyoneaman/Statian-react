@@ -1,19 +1,19 @@
 import React from "react";
 
-class CloudButton extends React.Component{
+class AppButton extends React.Component{
 
-    updateServerId = e => {
-        let servers = this.props.servers;
-        for(let i=0; i < servers.length; i++) {
-            if(servers[i].name === e) {
-                this.props.handleChangeServerId(servers[i].id);
+    updateAppId = e => {
+        let apps = this.props.apps;
+        for(let i=0; i < apps.length; i++) {
+            if(apps[i].name === e) {
+                this.props.handleChangeAppId(apps[i].id);
                 break;
             }
         }
     }
 
     render() {
-        if(this.props.servers===undefined) {
+        if(this.props.apps===undefined) {
             return (
                 <div className="card">
                     <div className="card-content">
@@ -28,15 +28,15 @@ class CloudButton extends React.Component{
         }
         else {
             let menuItems = [];
-            this.props.servers.map(c => {
+            this.props.apps.map(c => {
                 menuItems.push(
-                    <option key={c.id} selected={c.id===this.props.serverId}>
+                    <option key={c.id} selected={c.id===this.props.appId}>
                         {c.name}
                     </option>
                 )
             })
             let menu = (
-                <select onChange={e => this.updateServerId(e.target.value)}>
+                <select onChange={e => this.updateAppId(e.target.value)}>
                     {menuItems}
                 </select>
             );
@@ -45,7 +45,7 @@ class CloudButton extends React.Component{
                     <div className="card-content has-text-centered">
                         <div className="card-header-title">
                             <div className="has-text-centered">
-                                Select Cloud Server
+                                Select Server
                             </div>
                         </div>
                         <div className="field-body">
@@ -66,4 +66,4 @@ class CloudButton extends React.Component{
     }
 }
 
-export default CloudButton;
+export default AppButton;

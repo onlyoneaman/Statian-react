@@ -1,10 +1,9 @@
 import axios from 'axios'
 
-const API_URL = 'http://localhost:8000';
 
 class Connect {
 
-    makingRequests(server, value) {
+    makingRequests(server, value, API_URL) {
         const url = `${API_URL}/api/connect/`;
         return(axios.get(url, {
             params: {

@@ -14,6 +14,8 @@ class Task extends React.Component{
                         <Start
                             servers={this.props.servers}
                             calls={this.props.calls}
+                            apps={this.props.apps}
+                            appId={this.props.appId}
                             serverId={this.props.serverId}
                         />
                     </div>

@@ -7,17 +7,21 @@ class Content extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            serverId: 1,
+            serverId: null,
             calls: 1,
-            servers: []
+            servers: [],
+            apps: [],
+            appId: null
         }
     }
 
     async componentDidMount() {
         let data = await getServers();
         this.setState({
-            serverId: data.servers.defaultSelectedId,
-            servers: data.servers.data
+            serverId: data.data.servers.defaultSelectedId,
+            servers: data.data.servers.data,
+            apps: data.data.apps.data,
+            appId: data.data.apps.defaultSelectedId
         })
     }
 
@@ -27,6 +31,10 @@ class Content extends React.Component{
 
     handleChangeServerId = serverId => {
         this.setState({serverId});
+    }
+
+    handleChangeAppId = appId => {
+        this.setState({appId});
     }
 
     render() {
@@ -43,6 +51,8 @@ class Content extends React.Component{
                             serverId = {this.state.serverId}
                             calls = {this.state.calls}
                             servers={this.state.servers}
+                            apps={this.state.apps}
+                            handleChangeAppId={this.handleChangeAppId}
                             handleChangeCalls={this.handleChangeCalls}
                             handleChangeServerId={this.handleChangeServerId}
                         />
@@ -52,6 +62,8 @@ class Content extends React.Component{
                             servers={this.state.servers}
                             calls={this.state.calls}
                             serverId={this.state.serverId}
+                            apps={this.state.apps}
+                            appId={this.state.appId}
                         />
                     </div>
                 </div>

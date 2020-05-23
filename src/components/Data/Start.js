@@ -3,8 +3,9 @@ import Connect from "../../Api/Connect";
 
 const ConnectService = new Connect();
 
-async function startLoop (server, i)  {
-    await ConnectService.makingRequests(server, i)
+async function startLoop (server, i, appUrl)  {
+    console.log(server, i, appUrl);
+    await ConnectService.makingRequests(server, i, appUrl)
         .then((response)=>{
             console.log('Success',response);
         })
@@ -18,9 +19,9 @@ class Start extends React.Component{
         processing: false
     }
 
-    async processArray (array,server) {
+    async processArray (array, server, appUrl) {
         for (const item of array) {
-            await startLoop(server, item);
+            await startLoop(server, item, appUrl);
         }
         this.callsFinish();
     }
@@ -32,16 +33,23 @@ class Start extends React.Component{
 
     execute = () => {
         let server = null;
+        let appUrl = null;
         let calls = parseInt(this.props.calls);
         let servers = this.props.servers;
+        let apps = this.props.apps;
         this.setState({processing: true})
         for(let i=0;i < servers.length; i++) {
             if(servers[i].id === this.props.serverId) {
                 server = servers[i];
             }
         }
+        for(let i=0;i < apps.length; i++) {
+            if(apps[i].id === this.props.appId) {
+                appUrl = apps[i].url;
+            }
+        }
         let array = Array.from(Array(calls).keys())
-        this.processArray(array, server)
+        this.processArray(array, server, appUrl)
     }
 
     cancel = () => {
