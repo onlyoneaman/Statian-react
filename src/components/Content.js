@@ -8,7 +8,7 @@ class Content extends React.Component{
         super(props);
         this.state = {
             serverId: 1,
-            calls: 0,
+            calls: 1,
             servers: []
         }
     }
@@ -37,7 +37,7 @@ class Content extends React.Component{
                     minHeight: '70vh'
                 }}
             >
-                <div className="is-mobile columns is-vcentered">
+                <div className="columns is-vcentered">
                     <div className="column is-6">
                         <Options
                             serverId = {this.state.serverId}

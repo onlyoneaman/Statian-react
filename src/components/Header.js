@@ -15,8 +15,8 @@ class Header extends React.Component{
                         color: 'white'
                     }}
                 >
-                    <div className=" is-size-3-desktop is-size-2-widescreen is-size-4-tablet">
-                        Statian
+                    <div className="section is-size-3-desktop is-size-2-widescreen is-size-3">
+                        <b>Statian</b>
                     </div>
                 </nav>
             </header>
