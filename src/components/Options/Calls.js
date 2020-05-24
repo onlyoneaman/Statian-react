@@ -4,20 +4,21 @@ import ReactGA from "react-ga";
 class Calls extends React.Component{
     state = {
         calls: this.props.calls,
-        text: ''
+        text: '',
+        tagNums: [10,100,1000]
     }
 
-    handleSubmit = () => {
+    handleSubmit = (calls) => {
         if(this.props.processing) {
             this.setState({text: 'Cannot change while running a process.'})
         }
         else {
-            if(this.validateNum(this.state.calls)) {
+            if(this.validateNum(calls)) {
                 ReactGA.event({
                     category: 'Changed number of calls',
-                    action: 'Selected '+ this.state.calls
+                    action: 'Selected '+ calls
                 });
-                this.props.handleChangeCalls(this.state.calls);
+                this.props.handleChangeCalls(calls);
             }
         }
     }
@@ -31,6 +32,19 @@ class Calls extends React.Component{
     }
 
     render() {
+        let tagItems = [];
+        this.state.tagNums.map(c => {
+            tagItems.push(
+                <span key={c} className="tag is-medium is-warning" onClick={()=>this.handleSubmit(c)}>
+                    {c}
+                </span>
+            )
+        })
+        let menu = (
+            <div className="tags">
+                {tagItems}
+            </div>
+        );
         return (
             <div className="card">
                 <div className="card-content">
@@ -49,17 +63,20 @@ class Calls extends React.Component{
                         </div>
                     </div>
                     <div className="field is-horizontal">
-                        <div className="field-label">
-                        </div>
                         <div className="field-body">
                             <div className="field">
                                 <div className="control">
                                     <button
-                                        onClick={() => this.handleSubmit()}
+                                        onClick={() => this.handleSubmit(this.state.calls)}
                                         className="button is-primary"
                                     >
                                         Submit
                                     </button>
+                                </div>
+                            </div>
+                            <div className="field">
+                                <div className="control">
+                                    {menu}
                                 </div>
                             </div>
                         </div>

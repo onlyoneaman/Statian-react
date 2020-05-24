@@ -5,11 +5,14 @@ import ReactGA from "react-ga";
 const ConnectService = new Connect();
 
 class Start extends React.Component{
+    state = {
+        cancel: false,
+    }
 
     async startLoop (server, i, appUrl)  {
         await ConnectService.makingRequests(server, i, appUrl)
             .then((response)=>{
-                console.log('Success',response.time);
+                console.log('Success',response);
                 this.props.updateResponse(response.time, i+1);
             })
             .catch((response)=>{
@@ -19,6 +22,7 @@ class Start extends React.Component{
 
     async processArray (array, server, appUrl) {
         for (const item of array) {
+            if(this.state.cancel) break;
             await this.startLoop(server, item, appUrl);
         }
         this.callsFinish();
@@ -26,6 +30,7 @@ class Start extends React.Component{
 
     callsFinish = () => {
         console.log('done');
+        this.setState({cancel: false});
         this.props.processingEnd();
     }
 
@@ -55,6 +60,7 @@ class Start extends React.Component{
     }
 
     cancel = () => {
+        this.setState({cancel: true})
         this.props.processingEnd();
     }
 

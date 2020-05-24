@@ -58,6 +58,7 @@ class Content extends React.Component{
                                 calls = {this.state.calls}
                                 servers={this.state.servers}
                                 apps={this.state.apps}
+                                appId={this.state.appId}
                                 processing={this.state.processing}
                                 handleChangeAppId={this.handleChangeAppId}
                                 handleChangeCalls={this.handleChangeCalls}

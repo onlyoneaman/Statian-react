@@ -17,6 +17,15 @@ class Task extends React.Component{
         this.props.handleProcessing(false);
     }
 
+    clear = () => {
+        console.log('clear')
+        this.setState({
+            prevResp: null,
+            avgResp: null,
+            callsTillNow: null,
+        })
+    }
+
     updateResponse = (responseTime, callsTill) => {
         let avg = (this.state.callsTillNow*this.state.avgResp + responseTime)/callsTill;
         avg = avg.toFixed(3)
@@ -31,6 +40,7 @@ class Task extends React.Component{
     }
 
     render() {
+        console.log(this.state);
         return (
             <div>
                 <div className="section">
@@ -59,6 +69,8 @@ class Task extends React.Component{
                         prevResp={this.state.prevResp}
                         avgResp={this.state.avgResp}
                         callsTillNow={this.state.callsTillNow}
+                        clear={this.clear}
+                        calls={this.props.calls}
                     />
                 </div>
             </div>

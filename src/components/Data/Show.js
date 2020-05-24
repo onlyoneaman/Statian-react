@@ -18,18 +18,34 @@ class Show extends React.Component{
             <div className="card">
                 <div className="card-content">
                     {this.isProcessing()}
+                    &nbsp;&nbsp;&nbsp;
                     {
                         this.props.prevResp ?
                             <div>
+                                {
+                                    !this.props.processing ?
+                                        <p>
+                                            <button title="Refresh" className="delete is-small" onClick={()=>this.props.clear()}/>
+                                        </p>
+                                    :
+                                        <p />
+                                }
                                 <p>
                                     Final Response time: {this.props.prevResp} ms
                                 </p>
                                 <p>
                                     Average Response time: {this.props.avgResp} ms
                                 </p>
-                                <p>
-                                    Calls made till now: {this.props.callsTillNow}
-                                </p>
+                                {
+                                    this.props.processing ?
+                                        <p>
+                                            Processing {this.props.callsTillNow} of {this.props.calls}
+                                        </p>
+                                        :
+                                        <p>
+                                            Calls made: {this.props.callsTillNow}
+                                        </p>
+                                }
                             </div>
                             :
                             <div />

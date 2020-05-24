@@ -33,18 +33,23 @@ function dataBases() {
                 ]
             },
             apps: {
-                defaultSelectedId: 1,
+                defaultSelectedId: 3,
                 data: [
                     {
                         id: 1,
-                        name: 'localhost',
+                        name: 'localhost 8000',
                         url: 'http://localhost:8000'
                     },
                     {
                         id: 2,
                         name: 'Heroku App',
                         url: 'https://immense-anchorage-06876.herokuapp.com'
-                    }
+                    },
+                    {
+                        id: 3,
+                        name: 'localhost 5000',
+                        url: 'http://localhost:5000'
+                    },
                 ]
             }
         }
