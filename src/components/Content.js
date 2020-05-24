@@ -11,7 +11,8 @@ class Content extends React.Component{
             calls: 1,
             servers: [],
             apps: [],
-            appId: null
+            appId: null,
+            processing: false
         }
     }
 
@@ -23,6 +24,10 @@ class Content extends React.Component{
             apps: data.data.apps.data,
             appId: data.data.apps.defaultSelectedId
         })
+    }
+
+    handleProcessing = processing => {
+        this.setState({processing})
     }
 
     handleChangeCalls = calls => {
@@ -39,32 +44,37 @@ class Content extends React.Component{
 
     render() {
         return (
-            <div
-                className="section"
-                style={{
-                    minHeight: '70vh'
-                }}
-            >
-                <div className="columns is-vcentered">
-                    <div className="column is-6">
-                        <Options
-                            serverId = {this.state.serverId}
-                            calls = {this.state.calls}
-                            servers={this.state.servers}
-                            apps={this.state.apps}
-                            handleChangeAppId={this.handleChangeAppId}
-                            handleChangeCalls={this.handleChangeCalls}
-                            handleChangeServerId={this.handleChangeServerId}
-                        />
-                    </div>
-                    <div className="column is-6">
-                        <Task
-                            servers={this.state.servers}
-                            calls={this.state.calls}
-                            serverId={this.state.serverId}
-                            apps={this.state.apps}
-                            appId={this.state.appId}
-                        />
+            <div className="container">
+                <div
+                    className="section"
+                    style={{
+                        minHeight: '70vh'
+                    }}
+                >
+                    <div className="columns is-vcentered">
+                        <div className="column is-6">
+                            <Options
+                                serverId = {this.state.serverId}
+                                calls = {this.state.calls}
+                                servers={this.state.servers}
+                                apps={this.state.apps}
+                                processing={this.state.processing}
+                                handleChangeAppId={this.handleChangeAppId}
+                                handleChangeCalls={this.handleChangeCalls}
+                                handleChangeServerId={this.handleChangeServerId}
+                            />
+                        </div>
+                        <div className="column is-6">
+                            <Task
+                                servers={this.state.servers}
+                                calls={this.state.calls}
+                                serverId={this.state.serverId}
+                                apps={this.state.apps}
+                                appId={this.state.appId}
+                                processing={this.state.processing}
+                                handleProcessing={this.handleProcessing}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>

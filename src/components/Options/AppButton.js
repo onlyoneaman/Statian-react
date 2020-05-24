@@ -1,4 +1,5 @@
 import React from "react";
+import ReactGA from "react-ga";
 
 class AppButton extends React.Component{
 
@@ -7,6 +8,10 @@ class AppButton extends React.Component{
         for(let i=0; i < apps.length; i++) {
             if(apps[i].name === e) {
                 this.props.handleChangeAppId(apps[i].id);
+                ReactGA.event({
+                    category: 'Changed App',
+                    action: 'Selected '+apps[i].name
+                });
                 break;
             }
         }

@@ -1,13 +1,24 @@
 import React from "react";
+import ReactGA from "react-ga";
 
 class Calls extends React.Component{
     state = {
-        calls: this.props.calls
+        calls: this.props.calls,
+        text: ''
     }
 
     handleSubmit = () => {
-        if(this.validateNum(this.state.calls)) {
-            this.props.handleChangeCalls(this.state.calls);
+        if(this.props.processing) {
+            this.setState({text: 'Cannot change while running a process.'})
+        }
+        else {
+            if(this.validateNum(this.state.calls)) {
+                ReactGA.event({
+                    category: 'Changed number of calls',
+                    action: 'Selected '+ this.state.calls
+                });
+                this.props.handleChangeCalls(this.state.calls);
+            }
         }
     }
 
@@ -52,6 +63,9 @@ class Calls extends React.Component{
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div style={{color: 'red',fontSize: '0.8em'}}>
+                        {this.state.text}
                     </div>
                 </div>
             </div>

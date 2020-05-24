@@ -25,6 +25,7 @@ class Options extends React.Component {
                     <Calls
                         calls={this.props.calls}
                         handleChangeCalls={this.props.handleChangeCalls}
+                        processing={this.props.processing}
                     />
                 </div>
             </div>

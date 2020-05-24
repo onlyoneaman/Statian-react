@@ -1,4 +1,5 @@
 import React from "react";
+import ReactGA from 'react-ga';
 
 class CloudButton extends React.Component{
 
@@ -7,6 +8,10 @@ class CloudButton extends React.Component{
         for(let i=0; i < servers.length; i++) {
             if(servers[i].name === e) {
                 this.props.handleChangeServerId(servers[i].id);
+                ReactGA.event({
+                   category: 'Changed Cloud',
+                   action: 'Selected '+servers[i].name
+                });
                 break;
             }
         }
