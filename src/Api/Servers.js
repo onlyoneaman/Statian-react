@@ -26,7 +26,6 @@ function dataBases() {
                         name: 'db4free',
                         dbname: 'amank1647db',
                         username: 'amank1647',
-                        port: 3306,
                         serverName: 'db4free.net',
                         password: 'amankumar1647'
                     }

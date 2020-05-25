@@ -10,6 +10,7 @@ class Start extends React.Component{
     }
 
     async startLoop (server, i, appUrl)  {
+        console.log(server)
         await ConnectService.makingRequests(server, i, appUrl)
             .then((response)=>{
                 console.log('Success',response);
